@@ -15,10 +15,6 @@
     "devtools",
     "webNavigation"
   ],
-  "browser_action": {
-    "default_icon": "icon.png",
-    "default_popup": "devtools.html"
-  },
   "devtools_page": "devtools.html",
   "icons": {
     "16": "icon.png",

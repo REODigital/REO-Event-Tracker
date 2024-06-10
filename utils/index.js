@@ -22,12 +22,6 @@ export function getTime() {
   return hours + ":" + minutes + ":" + seconds;
 }
 
-export function generateExperimentListItem(experimentName, variation) {
-  var text;
-  if (variation) {
-    text = experimentName + " - " + variation;
-  } else {
-    text = experimentName;
-  }
-  return `<li><figure><img src="./assets/abtest.png" width="16" height="16" alt="abtest" /></figure><p>${text}</p></li>`;
+export function generateExperimentListItem(experiment) {
+  return `<li><figure><img src="./assets/abtest.png" width="16" height="16" alt="abtest" /></figure><p>${experiment}</p></li>`;
 }

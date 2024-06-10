@@ -122,6 +122,14 @@ section#events h4 {
 .tool.found .found {
   display: flex;
 }
+.tool button#refresh {
+  padding: 4px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: #d90166;
+  border: 2px solid red;
+  color: #fff;
+}
 
 .spinner-container {
   display: flex;

@@ -1,4 +1,8 @@
-import { pingWindow, getTime } from "./utils/index.js";
+import {
+  pingWindow,
+  getTime,
+  generateExperimentListItem,
+} from "./utils/index.js";
 import {
   handler_abtasty,
   handler_adobeTarget_v1,
@@ -16,6 +20,18 @@ chrome.devtools.panels.create(
     panel.onShown.addListener(function (panelWindow) {
       var body = panelWindow.document.body;
       var urlsList = panelWindow.document.querySelector("ul#event-list");
+      const activeExperimentsCount = body.querySelector(
+        "#experiments div.active span"
+      );
+      const inactiveExperimentsCount = body.querySelector(
+        "#experiments div.inactive span"
+      );
+      const activeExperiments = body.querySelector(
+        "#experiments .exp-list.active ul"
+      );
+      const inactiveExperiments = body.querySelector(
+        "#experiments .exp-list.inactive ul"
+      );
 
       function updateList(eventType, eventName) {
         var listItem = panelWindow.document.createElement("li");
@@ -25,6 +41,14 @@ chrome.devtools.panels.create(
       }
       function clearList() {
         urlsList.innerHTML = "";
+      }
+      function clearExperiments() {
+        body.querySelector("div.exp-list.active").classList.remove("open");
+        body.querySelector("div.exp-list.inactive").classList.remove("open");
+        activeExperimentsCount.innerText = `0`;
+        inactiveExperimentsCount.innerText = `0`;
+        activeExperiments.innerHTML = ``;
+        inactiveExperiments.innerHTML = ``;
       }
 
       function updateToolInfo() {
@@ -62,28 +86,25 @@ chrome.devtools.panels.create(
       function updateExperiments() {
         function populateTests(tool, result) {
           // console.log({ tool, result });
-          const activeExperimentsCount = body.querySelector(
-            "#experiments div.active span"
-          );
-          const inactiveExperimentsCount = body.querySelector(
-            "#experiments div.inactive span"
-          );
-          const activeExperiments = body.querySelector(
-            "#experiments .exp-list.active ul"
-          );
-          const inactiveExperiments = body.querySelector(
-            "#experiments .exp-list.inactive ul"
-          );
-
+          var consolidatedExperiments;
           if (tool === "abtasty") {
-            experimentHandler_abtasty(
-              result,
-              activeExperimentsCount,
-              inactiveExperimentsCount,
-              activeExperiments,
-              inactiveExperiments
-            );
+            console.log("RESULT: ", result);
+            consolidatedExperiments = experimentHandler_abtasty(result);
           }
+
+          clearExperiments();
+
+          inactiveExperimentsCount.innerText =
+            consolidatedExperiments.inactive.length;
+          activeExperimentsCount.innerText =
+            consolidatedExperiments.active.length;
+
+          consolidatedExperiments.active.forEach(function (item) {
+            activeExperiments.innerHTML += generateExperimentListItem(item);
+          });
+          consolidatedExperiments.inactive.forEach(function (item) {
+            inactiveExperiments.innerHTML += generateExperimentListItem(item);
+          });
         }
 
         pingWindow("window.ABTasty.results", function (result) {
@@ -110,6 +131,12 @@ chrome.devtools.panels.create(
           } else {
             expList.classList.add("open");
           }
+        }
+        if (e.target.closest("button#refresh")) {
+          // click on refresh button.
+          clearExperiments();
+          // updateToolInfo();
+          updateExperiments();
         }
       });
 
