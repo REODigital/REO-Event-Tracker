@@ -15,7 +15,7 @@
 
 1. Download the code and unzip (or) clone this repository to your local machine:
    ```sh
-   git clone https://github.com/yourusername/your-repo.git
+   git clone https://github.com/REODigital/REO-Event-Tracker.git
    ```
 2. Open Chrome and go to `chrome://extensions/`.
 3. Enable "Developer mode" by toggling the switch in the upper-right corner.
