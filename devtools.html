@@ -1,0 +1,142 @@
+<html>
+  <head>
+    <title>REO Events</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <nav>
+      <div>
+        <figure class="reo-logo">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="24"
+            width="60"
+            viewBox="0 0 282 112"
+          >
+            <g
+              fill="#15172c"
+              fill-rule="evenodd"
+              transform="translate(2 1.614)"
+            >
+              <path
+                d="m0 85.386h24v3h-24zm0-6v-78h42c19.95 0 36 16.05 36 36 0 12.9-7.8 24.6-19.35 30.45l22.35 38.55h-25.8l-19.8-34.5h-11.4v7.5zm0 15h24v3h-24zm0 9h24v3h-24zm24-79.5v27h18c6.6 0 12-5.85 12-13.5s-5.4-13.5-12-13.5z"
+              ></path>
+              <path
+                d="m152 64.686h-35v18.6h42v23.1h-66v-105h65.25v23.1h-41.25v17.4h35z"
+              ></path>
+              <path
+                d="m224.706 108.472c-29.949 0-54.236-23.542-54.236-54.236s24.287-54.236 54.236-54.236 54.236 23.542 54.236 54.236-24.287 54.236-54.236 54.236zm0-26.236c15.647059 0 28-11.1730769 28-28s-12.352941-28-28-28-28 11.1730769-28 28 12.352941 28 28 28z"
+                fill-rule="nonzero"
+              ></path>
+            </g>
+          </svg>
+        </figure>
+        <h1>Event Tracker</h1>
+      </div>
+      <button id="clear-events">Clear</button>
+    </nav>
+    <div class="tool searching">
+      <h2 class="searching">Searching for tag...</h2>
+      <h2 class="found">Tag found</h2>
+      <img class="found" src="" alt="ab test tool" />
+    </div>
+    <section id="experiments">
+      <div class="exp-list active">
+        <header>
+          <figure class="closed">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="m8.25 4.5 7.5 7.5-7.5 7.5"
+              />
+            </svg>
+          </figure>
+          <figure class="opened">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="m19.5 8.25-7.5 7.5-7.5-7.5"
+              />
+            </svg>
+          </figure>
+          <h4>Active experiments (<span>0</span>)</h4>
+        </header>
+        <ul></ul>
+      </div>
+      <div class="exp-list inactive">
+        <header>
+          <figure class="closed">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="m8.25 4.5 7.5 7.5-7.5 7.5"
+              />
+            </svg>
+          </figure>
+          <figure class="opened">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="m19.5 8.25-7.5 7.5-7.5-7.5"
+              />
+            </svg>
+          </figure>
+          <h4>Inactive experiments (<span>0</span>)</h4>
+        </header>
+        <ul></ul>
+      </div>
+    </section>
+    <section id="events">
+      <h4>Events</h4>
+      <ul id="event-list"></ul>
+    </section>
+    <div class="spinner-container">
+      <div>
+        <div class="dot-loader"></div>
+        <div class="dot-loader dot-loader--2"></div>
+        <div class="dot-loader dot-loader--3"></div>
+      </div>
+    </div>
+    <a
+      class="documentation"
+      href="https://reodigital.atlassian.net/wiki/spaces/Developmen/overview"
+      target="_blank"
+    >
+      <div class="triangle"></div>
+      <figure><img src="./assets/confluence.png" alt="confluence" /></figure>
+    </a>
+    <script type="module" src="devtools.js"></script>
+  </body>
+</html>

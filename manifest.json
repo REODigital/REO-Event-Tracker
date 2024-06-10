@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "REO Events",
+  "version": "1.0",
+  "description": "Lists REO's AB test Events",
+  "permissions": [
+    "activeTab",
+    "webRequest",
+    "webRequestBlocking",
+    "https://*/*",
+    "tabs",
+    "<all_urls>",
+    "tabs",
+    "storage",
+    "devtools",
+    "webNavigation"
+  ],
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_popup": "devtools.html"
+  },
+  "devtools_page": "devtools.html",
+  "icons": {
+    "16": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
+  }
+}
