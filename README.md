@@ -2,8 +2,14 @@
 
 ## Description
 
-- Tracks all event requests to AB test tools. Currently supports ABTasty, Optimizely, Adobe Target and VWO.
-- Tracks the active and inactive experiments on the page. Currently supports ABTasty.
+- Tracks all event requests to AB test tools. Currently supports:
+  - ABTasty
+  - Optimizely
+  - Adobe Target
+  - VWO.
+- Tracks the active and inactive experiments on the page. Currently supports:
+  - ABTasty
+  - Optimizely
 
 ## Installation
 
@@ -19,3 +25,14 @@
 ## Usage
 
 - Right-click and enter Developer tools. Find the REOEvents panel in the tabs.
+
+## Contributing
+
+If you'd like to contribute to this project, please follow these guidelines:
+
+1. Fork the repository.
+2. Make your changes.
+3. Stage all your edits (`git add .`).
+4. Commit your changes (`git commit -m 'Added some feature'`).
+5. Push to the branch (`git push`).
+6. Create a new Pull Request.
