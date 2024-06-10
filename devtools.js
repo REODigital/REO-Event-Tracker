@@ -13,6 +13,7 @@ import {
 import {
   experimentHandler_abtasty,
   experimentHandler_optimizely,
+  experimentHandler_vwo,
 } from "./handlers/experiments/index.js";
 
 chrome.devtools.panels.create(
@@ -96,6 +97,9 @@ chrome.devtools.panels.create(
           if (tool === "optimizely") {
             consolidatedExperiments = experimentHandler_optimizely(result);
           }
+          if (tool === "vwo") {
+            consolidatedExperiments = experimentHandler_vwo(result);
+          }
 
           clearExperiments();
 
@@ -122,6 +126,14 @@ chrome.devtools.panels.create(
           function (result) {
             if (result) {
               populateTests("optimizely", result);
+            }
+          }
+        );
+        pingWindow(
+          "JSON.stringify(VWO._.allSettings.dataStore.campaigns)",
+          function (result) {
+            if (result) {
+              populateTests("vwo", result);
             }
           }
         );

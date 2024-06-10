@@ -6,10 +6,11 @@
   - ABTasty
   - Optimizely
   - Adobe Target
-  - VWO.
+  - VWO
 - Tracks the active and inactive experiments on the page. Currently supports:
   - ABTasty
   - Optimizely
+  - VWO
 
 ## Installation
 

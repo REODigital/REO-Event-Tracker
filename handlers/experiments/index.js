@@ -67,3 +67,26 @@ export function experimentHandler_optimizely(result) {
     inactive: inactive,
   };
 }
+
+export function experimentHandler_vwo(result) {
+  const parsedResult = JSON.parse(result);
+  let active = [];
+  let inactive = [];
+  for (const key in parsedResult) {
+    if (parsedResult.hasOwnProperty(key)) {
+      const experiment = parsedResult[key];
+      if (experiment.combination_chosen) {
+        var comb_chosen = experiment.combination_chosen;
+        active.push(
+          generateVariationName(experiment.name, experiment.comb_n[comb_chosen])
+        );
+      } else {
+        inactive.push(generateVariationName(experiment.name, null));
+      }
+    }
+  }
+  return {
+    active: active,
+    inactive: inactive,
+  };
+}
