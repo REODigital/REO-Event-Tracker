@@ -26,6 +26,10 @@
 
 - Right-click and enter Developer tools. Find the REOEvents panel in the tabs.
 
+## Issues
+
+- If an issue / bug is spotted, please add the details with a screenshot (preferably) to https://github.com/REODigital/REO-Event-Tracker/issues
+
 ## Contributing
 
 If you'd like to contribute to this project, please follow these guidelines:
