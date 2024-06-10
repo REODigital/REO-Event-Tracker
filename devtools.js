@@ -10,7 +10,10 @@ import {
   handler_optimizely,
   handler_vwo,
 } from "./handlers/events/index.js";
-import { experimentHandler_abtasty } from "./handlers/experiments/index.js";
+import {
+  experimentHandler_abtasty,
+  experimentHandler_optimizely,
+} from "./handlers/experiments/index.js";
 
 chrome.devtools.panels.create(
   "REO Events",
@@ -88,8 +91,10 @@ chrome.devtools.panels.create(
           // console.log({ tool, result });
           var consolidatedExperiments;
           if (tool === "abtasty") {
-            console.log("RESULT: ", result);
             consolidatedExperiments = experimentHandler_abtasty(result);
+          }
+          if (tool === "optimizely") {
+            consolidatedExperiments = experimentHandler_optimizely(result);
           }
 
           clearExperiments();
@@ -112,6 +117,14 @@ chrome.devtools.panels.create(
             populateTests("abtasty", result);
           }
         });
+        pingWindow(
+          "window.optimizely.get('state').getExperimentStates()",
+          function (result) {
+            if (result) {
+              populateTests("optimizely", result);
+            }
+          }
+        );
       }
       updateExperiments();
 
@@ -135,7 +148,6 @@ chrome.devtools.panels.create(
         if (e.target.closest("button#refresh")) {
           // click on refresh button.
           clearExperiments();
-          // updateToolInfo();
           updateExperiments();
         }
       });

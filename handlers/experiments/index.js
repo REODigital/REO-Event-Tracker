@@ -1,3 +1,13 @@
+function generateVariationName(experimentName, variationName) {
+  var text = "";
+  if (variationName) {
+    text = experimentName + " - " + variationName;
+  } else {
+    text = experimentName;
+  }
+  return text;
+}
+
 export function experimentHandler_abtasty(result) {
   let active = [];
   let inactive = [];
@@ -10,28 +20,48 @@ export function experimentHandler_abtasty(result) {
         experiment.status === "pending" ||
         experiment.status === "segment_rejected"
       ) {
-        var text = "";
-        if (experiment.variationName) {
-          text = experiment.name + " - " + experiment.variationName;
-        } else {
-          text = experiment.name;
-        }
-        inactive.push(text);
+        inactive.push(
+          generateVariationName(experiment.name, experiment.variationName)
+        );
       }
       if (experiment.status === "accepted") {
-        var text = "";
-        if (experiment.variationName) {
-          text = experiment.name + " - " + experiment.variationName;
-        } else {
-          text = experiment.name;
-        }
-        active.push(text);
+        active.push(
+          generateVariationName(experiment.name, experiment.variationName)
+        );
       }
     }
   }
 
-  console.log({ active: active, inactive: inactive });
+  return {
+    active: active,
+    inactive: inactive,
+  };
+}
 
+export function experimentHandler_optimizely(result) {
+  let active = [];
+  let inactive = [];
+  for (const key in result) {
+    if (result.hasOwnProperty(key)) {
+      const experiment = result[key];
+      if (experiment.isActive == false) {
+        inactive.push(
+          generateVariationName(
+            experiment.experimentName,
+            experiment.variation?.name
+          )
+        );
+      }
+      if (experiment.isActive == true) {
+        active.push(
+          generateVariationName(
+            experiment.experimentName,
+            experiment.variation?.name
+          )
+        );
+      }
+    }
+  }
   return {
     active: active,
     inactive: inactive,
