@@ -5,20 +5,18 @@
   "description": "Lists REO's AB test Events",
   "permissions": [
     "activeTab",
-    "webRequest",
-    "webRequestBlocking",
-    "https://*/*",
-    "tabs",
-    "<all_urls>",
+    "declarativeNetRequest",
     "tabs",
     "storage",
-    "devtools",
     "webNavigation"
+  ],
+  "host_permissions": [
+    "<all_urls>"
   ],
   "devtools_page": "devtools.html",
   "icons": {
-    "16": "icon.png",
-    "48": "icon.png",
-    "128": "icon.png"
+    "16": "assets/icon16.png",
+    "48": "assets/icon48.png",
+    "128": "assets/icon128.png"
   }
 }
