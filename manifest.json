@@ -6,13 +6,9 @@
   "permissions": [
     "activeTab",
     "webRequest",
-    "webRequestBlocking",
-    "https://*/*",
     "tabs",
-    "<all_urls>",
     "tabs",
     "storage",
-    "devtools",
     "webNavigation"
   ],
   "devtools_page": "devtools.html",
