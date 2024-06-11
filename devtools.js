@@ -12,6 +12,8 @@ import {
 } from "./handlers/events/index.js";
 import {
   experimentHandler_abtasty,
+  experimentHandler_adobetarget_v1,
+  experimentHandler_adobetarget_v2,
   experimentHandler_optimizely,
   experimentHandler_vwo,
 } from "./handlers/experiments/index.js";
@@ -55,6 +57,56 @@ chrome.devtools.panels.create(
         inactiveExperiments.innerHTML = ``;
       }
 
+      function populateTests(tool, result) {
+        // console.log({ tool, result });
+        var consolidatedExperiments;
+        if (tool === "abtasty") {
+          consolidatedExperiments = experimentHandler_abtasty(result);
+        }
+        if (tool === "optimizely") {
+          consolidatedExperiments = experimentHandler_optimizely(result);
+        }
+        if (tool === "vwo") {
+          consolidatedExperiments = experimentHandler_vwo(result);
+        }
+        if (tool === "adobetarget_v2") {
+          // console.log("RES", result);
+          consolidatedExperiments = experimentHandler_adobetarget_v2(result);
+        }
+        if (tool === "adobetarget_v1") {
+          // console.log("RES", result);
+          // consolidatedExperiments = experimentHandler_adobetarget_v2(result);
+          consolidatedExperiments = experimentHandler_adobetarget_v1(result);
+        }
+
+        clearExperiments();
+
+        if (consolidatedExperiments) {
+          inactiveExperimentsCount.innerText =
+            consolidatedExperiments.inactive.length;
+          activeExperimentsCount.innerText =
+            consolidatedExperiments.active.length;
+
+          consolidatedExperiments.active.forEach(function (item) {
+            activeExperiments.innerHTML += generateExperimentListItem(item);
+          });
+          consolidatedExperiments.inactive.forEach(function (item) {
+            inactiveExperiments.innerHTML += generateExperimentListItem(item);
+          });
+        }
+      }
+
+      function syncTestsToWindow_at2(result) {
+        const sessionItems = JSON.parse(sessionStorage.getItem("at2_tests"));
+        result?.offers?.map((item) => {
+          let varName = `${item.responseTokens["activity.name"]} - ${item.responseTokens["experience.name"]}`;
+          if (!sessionItems.contains(varName)) {
+            sessionItems.push(varName);
+          }
+        });
+        sessionStorage.setItem("at2_tests", JSON.stringify(sessionItems));
+      }
+
       function updateToolInfo() {
         function showTool(filename) {
           body.querySelector(".tool").classList.remove("searching");
@@ -88,34 +140,6 @@ chrome.devtools.panels.create(
       updateToolInfo();
 
       function updateExperiments() {
-        function populateTests(tool, result) {
-          // console.log({ tool, result });
-          var consolidatedExperiments;
-          if (tool === "abtasty") {
-            consolidatedExperiments = experimentHandler_abtasty(result);
-          }
-          if (tool === "optimizely") {
-            consolidatedExperiments = experimentHandler_optimizely(result);
-          }
-          if (tool === "vwo") {
-            consolidatedExperiments = experimentHandler_vwo(result);
-          }
-
-          clearExperiments();
-
-          inactiveExperimentsCount.innerText =
-            consolidatedExperiments.inactive.length;
-          activeExperimentsCount.innerText =
-            consolidatedExperiments.active.length;
-
-          consolidatedExperiments.active.forEach(function (item) {
-            activeExperiments.innerHTML += generateExperimentListItem(item);
-          });
-          consolidatedExperiments.inactive.forEach(function (item) {
-            inactiveExperiments.innerHTML += generateExperimentListItem(item);
-          });
-        }
-
         pingWindow("window.ABTasty.results", function (result) {
           if (result) {
             populateTests("abtasty", result);
@@ -172,9 +196,14 @@ chrome.devtools.panels.create(
         }
         if (request.request.url.includes("/v1/delivery")) {
           var payload = JSON.parse(request.request.postData.text);
-          handler_adobeTarget_v1(payload, updateList);
+          if (!payload.execute) {
+            handler_adobeTarget_v1(payload, updateList);
+          }
         }
-        if (request.request.url.includes("/mbox/json")) {
+        if (
+          request.request.url.includes("/mbox/json") &&
+          !request.request.url.includes("/mbox/json?mbox=target-global-mbox")
+        ) {
           var payload = request.request.queryString;
           handler_adobeTarget_v2(payload, updateList);
         }
@@ -188,6 +217,21 @@ chrome.devtools.panels.create(
         ) {
           var payload = JSON.parse(request.request.postData.text);
           handler_vwo(payload, updateList);
+        }
+        if (
+          request.request.url.includes("/mbox/json?mbox=target-global-mbox")
+        ) {
+          request.getContent(function (content, encoding) {
+            populateTests("adobetarget_v2", JSON.parse(content));
+          });
+        }
+        if (request.request.url.includes("/v1/delivery")) {
+          request.getContent(function (content, encoding) {
+            var parsedContent = content && JSON.parse(content);
+            if (parsedContent?.execute) {
+              populateTests("adobetarget_v1", JSON.parse(content));
+            }
+          });
         }
       });
     });
