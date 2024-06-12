@@ -5,12 +5,15 @@
 - Tracks all event requests to AB test tools. Currently supports:
   - ABTasty
   - Optimizely
-  - Adobe Target
   - VWO
+  - Adobe Target V1
+  - Adobe Target V2
 - Tracks the active and inactive experiments on the page. Currently supports:
   - ABTasty
   - Optimizely
   - VWO
+  - Adobe Target V1
+  - Adobe Target V2
 
 ## Installation
 
