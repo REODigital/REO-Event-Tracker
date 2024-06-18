@@ -168,6 +168,32 @@ chrome.devtools.panels.create(
       }
       updateExperiments();
 
+      async function readCSS() {
+        var cssText = ``;
+        await fetch(chrome.runtime.getURL("style.css"))
+          .then((response) => response.text())
+          .then((css) => {
+            cssText = css;
+          })
+          .catch((error) => console.error("Error fetching style.css:", error));
+        return cssText;
+      }
+      async function printPanelContent() {
+        let panelContent = await body.innerHTML;
+        let cssText = await readCSS();
+
+        let printWindow = window.open("", "_blank");
+        printWindow.document.open();
+        printWindow.document.write(`<html>
+            <head><title>REO Event Tracker</title><style>${cssText}</style></head>
+            <body>${panelContent}</body></html>`);
+        printWindow.document.close();
+
+        setTimeout(function () {
+          printWindow.print();
+        }, 200);
+      }
+
       // click event listener.
       body.addEventListener("click", function (e) {
         if (e.target.closest("button#clear-events")) {
@@ -195,6 +221,12 @@ chrome.devtools.panels.create(
           if (sessionTool === "adobetarget") {
             chrome.devtools.inspectedWindow.reload({ ignoreCache: true });
           }
+        }
+        if (e.target.closest("button#print")) {
+          body.querySelectorAll(".exp-list").forEach(function (exp) {
+            exp.classList.add("open");
+          });
+          printPanelContent();
         }
       });
 

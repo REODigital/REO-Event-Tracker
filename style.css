@@ -1,3 +1,15 @@
+@page {
+  size: portrait;
+}
+@media print {
+  button#refresh,
+  button#print,
+  a.documentation,
+  .spinner-container,
+  button#clear-events {
+    display: none;
+  }
+}
 body {
   font-family: sans-serif;
   width: calc(100% - 100px);
@@ -128,6 +140,14 @@ section#events h4 {
   cursor: pointer;
   background-color: #d90166;
   border: 2px solid red;
+  color: #fff;
+}
+.tool button#print {
+  padding: 4px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: #0077ff;
+  border: 2px solid #0077ff;
   color: #fff;
 }
 
