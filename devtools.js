@@ -96,16 +96,16 @@ chrome.devtools.panels.create(
         }
       }
 
-      function syncTestsToWindow_at2(result) {
-        const sessionItems = JSON.parse(sessionStorage.getItem("at2_tests"));
-        result?.offers?.map((item) => {
-          let varName = `${item.responseTokens["activity.name"]} - ${item.responseTokens["experience.name"]}`;
-          if (!sessionItems.contains(varName)) {
-            sessionItems.push(varName);
-          }
-        });
-        sessionStorage.setItem("at2_tests", JSON.stringify(sessionItems));
-      }
+      // function syncTestsToWindow_at2(result) {
+      //   const sessionItems = JSON.parse(sessionStorage.getItem("at2_tests"));
+      //   result?.offers?.map((item) => {
+      //     let varName = `${item.responseTokens["activity.name"]} - ${item.responseTokens["experience.name"]}`;
+      //     if (!sessionItems.contains(varName)) {
+      //       sessionItems.push(varName);
+      //     }
+      //   });
+      //   sessionStorage.setItem("at2_tests", JSON.stringify(sessionItems));
+      // }
 
       function updateToolInfo() {
         function showTool(filename) {
@@ -117,21 +117,25 @@ chrome.devtools.panels.create(
         }
         pingWindow("window.ABTasty", function (result) {
           if (result) {
+            sessionStorage.setItem("reo-tool", "abtasty");
             showTool("abtasty.png");
           }
         });
         pingWindow("window.adobe.target.VERSION", function (result) {
           if (result) {
+            sessionStorage.setItem("reo-tool", "adobetarget");
             showTool("adobetarget.png");
           }
         });
         pingWindow("window.optimizely", function (result) {
           if (result) {
+            sessionStorage.setItem("reo-tool", "optimizely");
             showTool("optimizely.png");
           }
         });
         pingWindow("window.VWO", function (result) {
           if (result) {
+            sessionStorage.setItem("reo-tool", "vwo");
             showTool("vwo.png");
           }
         });
@@ -183,8 +187,14 @@ chrome.devtools.panels.create(
         }
         if (e.target.closest("button#refresh")) {
           // click on refresh button.
+          var sessionTool = sessionStorage.getItem("reo-tool");
           clearExperiments();
-          updateExperiments();
+          if (sessionTool !== "adobetarget") {
+            updateExperiments();
+          }
+          if (sessionTool === "adobetarget") {
+            chrome.devtools.inspectedWindow.reload({ ignoreCache: true });
+          }
         }
       });
 
