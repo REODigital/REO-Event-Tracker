@@ -9,6 +9,14 @@
   button#clear-events {
     display: none;
   }
+  #event-list li.event-list .event-time,
+  #event-list li.event-list .event-name {
+    background-color: #fff !important;
+    color: #000 !important;
+  }
+  #experiments .exp-list {
+    border-color: #000 !important;
+  }
 }
 body {
   font-family: sans-serif;
@@ -86,6 +94,7 @@ section#events h4 {
   white-space: nowrap;
   min-width: 65px;
   max-width: 65px;
+  border-right: 2px solid #000;
 }
 #event-list li.event-list .event-type {
   background-color: #99edc3;
@@ -95,6 +104,7 @@ section#events h4 {
   width: 150px;
   text-wrap: nowrap;
   white-space: nowrap;
+  border-right: 2px solid #000;
 }
 #event-list li.event-list .event-name {
   background-color: #4e4b78;
