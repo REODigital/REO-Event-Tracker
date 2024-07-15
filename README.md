@@ -8,12 +8,14 @@
   - VWO
   - Adobe Target V1
   - Adobe Target V2
+  - Dynamic Yield
 - Tracks the active and inactive experiments on the page. Currently supports:
   - ABTasty
   - Optimizely
   - VWO
   - Adobe Target V1
   - Adobe Target V2
+  - Dynamic Yield
 
 ## Installation
 
