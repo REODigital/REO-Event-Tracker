@@ -9,6 +9,7 @@ import {
   handler_adobeTarget_v2,
   handler_optimizely,
   handler_vwo,
+  handler_dynamicyield,
 } from "./handlers/events/index.js";
 import {
   experimentHandler_abtasty,
@@ -16,6 +17,7 @@ import {
   experimentHandler_adobetarget_v2,
   experimentHandler_optimizely,
   experimentHandler_vwo,
+  experimentHandler_dynamicyield,
 } from "./handlers/experiments/index.js";
 
 chrome.devtools.panels.create(
@@ -70,13 +72,13 @@ chrome.devtools.panels.create(
           consolidatedExperiments = experimentHandler_vwo(result);
         }
         if (tool === "adobetarget_v2") {
-          // console.log("RES", result);
           consolidatedExperiments = experimentHandler_adobetarget_v2(result);
         }
         if (tool === "adobetarget_v1") {
-          // console.log("RES", result);
-          // consolidatedExperiments = experimentHandler_adobetarget_v2(result);
           consolidatedExperiments = experimentHandler_adobetarget_v1(result);
+        }
+        if (tool === "dynamicyield") {
+          consolidatedExperiments = experimentHandler_dynamicyield(result);
         }
 
         clearExperiments();
@@ -95,17 +97,6 @@ chrome.devtools.panels.create(
           });
         }
       }
-
-      // function syncTestsToWindow_at2(result) {
-      //   const sessionItems = JSON.parse(sessionStorage.getItem("at2_tests"));
-      //   result?.offers?.map((item) => {
-      //     let varName = `${item.responseTokens["activity.name"]} - ${item.responseTokens["experience.name"]}`;
-      //     if (!sessionItems.contains(varName)) {
-      //       sessionItems.push(varName);
-      //     }
-      //   });
-      //   sessionStorage.setItem("at2_tests", JSON.stringify(sessionItems));
-      // }
 
       function updateToolInfo() {
         function showTool(filename) {
@@ -139,6 +130,12 @@ chrome.devtools.panels.create(
             showTool("vwo.png");
           }
         });
+        pingWindow("window.DY.dyid", function (result) {
+          if (result) {
+            sessionStorage.setItem("reo-tool", "dynamicyield");
+            showTool("dynamicyield.png");
+          }
+        });
       }
       // updates the AB test tool.
       updateToolInfo();
@@ -165,6 +162,11 @@ chrome.devtools.panels.create(
             }
           }
         );
+        pingWindow("DYO.getUserObjectsAndVariations()", function (result) {
+          if (result) {
+            populateTests("dynamicyield", result);
+          }
+        });
       }
       updateExperiments();
 
@@ -259,6 +261,14 @@ chrome.devtools.panels.create(
         ) {
           var payload = JSON.parse(request.request.postData.text);
           handler_vwo(payload, updateList);
+        }
+        if (
+          request.request.url.includes("dynamicyield.com") &&
+          !request.request.url.includes("json") &&
+          request.request.method === "GET"
+        ) {
+          var payload = request.request.queryString;
+          handler_dynamicyield(payload, updateList);
         }
         if (
           request.request.url.includes("/mbox/json?mbox=target-global-mbox")

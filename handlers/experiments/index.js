@@ -122,3 +122,22 @@ export function experimentHandler_adobetarget_v1(result) {
     inactive: [],
   };
 }
+
+export function experimentHandler_dynamicyield(result) {
+  let active = [];
+  let inactive = [];
+
+  result.forEach(function (experiment) {
+    active.push(
+      generateVariationName(
+        experiment.objectName,
+        experiment.variations[0] || experiment.conditionName
+      )
+    );
+  });
+
+  return {
+    active: active,
+    inactive: inactive,
+  };
+}

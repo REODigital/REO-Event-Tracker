@@ -94,3 +94,17 @@ export function handler_vwo(payload, updateList) {
     updateList(eventType, eventName);
   }
 }
+
+export function handler_dynamicyield(payload, updateList) {
+  let eventName;
+  let eventType = "Custom";
+
+  payload.forEach(function (item) {
+    if (item.name === "name") {
+      eventName = decodeURIComponent(item.value);
+    }
+  });
+  if (eventName) {
+    updateList(eventType, eventName);
+  }
+}
