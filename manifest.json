@@ -7,7 +7,6 @@
     "activeTab",
     "webRequest",
     "tabs",
-    "tabs",
     "storage",
     "webNavigation"
   ],
@@ -16,9 +15,9 @@
   ],
   "devtools_page": "devtools.html",
   "icons": {
-    "16": "icon.png",
-    "48": "icon.png",
-    "128": "icon.png"
+    "16": "assets/icon.png",
+    "48": "assets/icon.png",
+    "128": "assets/icon.png"
   },
   "web_accessible_resources": [
     {
