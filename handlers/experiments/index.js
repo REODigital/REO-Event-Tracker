@@ -90,3 +90,35 @@ export function experimentHandler_vwo(result) {
     inactive: inactive,
   };
 }
+
+export function experimentHandler_adobetarget_v2(result) {
+  const activities = result?.offers?.map(
+    (item) =>
+      `${item.responseTokens["activity.name"]} - ${item.responseTokens["experience.name"]}`
+  );
+  const uniqueActivities = new Set();
+  activities.forEach((activity) => {
+    uniqueActivities.add(activity);
+  });
+
+  return {
+    active: [...uniqueActivities],
+    inactive: [],
+  };
+}
+
+export function experimentHandler_adobetarget_v1(result) {
+  const activities = result?.execute?.pageLoad?.options?.map(
+    (item) =>
+      `${item.responseTokens["activity.name"]} - ${item.responseTokens["experience.name"]}`
+  );
+  const uniqueActivities = new Set();
+  activities.forEach((activity) => {
+    uniqueActivities.add(activity);
+  });
+
+  return {
+    active: [...uniqueActivities],
+    inactive: [],
+  };
+}

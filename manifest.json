@@ -5,7 +5,8 @@
   "description": "Lists REO's AB test Events",
   "permissions": [
     "activeTab",
-    "declarativeNetRequest",
+    "webRequest",
+    "tabs",
     "tabs",
     "storage",
     "webNavigation"
@@ -15,8 +16,14 @@
   ],
   "devtools_page": "devtools.html",
   "icons": {
-    "16": "assets/icon16.png",
-    "48": "assets/icon48.png",
-    "128": "assets/icon128.png"
-  }
+    "16": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["style.css"],
+      "matches": ["<all_urls>"]
+    }
+  ]
 }

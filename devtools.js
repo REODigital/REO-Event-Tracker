@@ -12,6 +12,8 @@ import {
 } from "./handlers/events/index.js";
 import {
   experimentHandler_abtasty,
+  experimentHandler_adobetarget_v1,
+  experimentHandler_adobetarget_v2,
   experimentHandler_optimizely,
   experimentHandler_vwo,
 } from "./handlers/experiments/index.js";
@@ -55,54 +57,31 @@ chrome.devtools.panels.create(
         inactiveExperiments.innerHTML = ``;
       }
 
-      function updateToolInfo() {
-        function showTool(filename) {
-          body.querySelector(".tool").classList.remove("searching");
-          body.querySelector(".tool").classList.add("found");
-          body
-            .querySelector(".tool img.found")
-            .setAttribute("src", `./assets/${filename}`);
+      function populateTests(tool, result) {
+        // console.log({ tool, result });
+        var consolidatedExperiments;
+        if (tool === "abtasty") {
+          consolidatedExperiments = experimentHandler_abtasty(result);
         }
-        pingWindow("window.ABTasty", function (result) {
-          if (result) {
-            showTool("abtasty.png");
-          }
-        });
-        pingWindow("window.adobe.target.VERSION", function (result) {
-          if (result) {
-            showTool("adobetarget.png");
-          }
-        });
-        pingWindow("window.optimizely", function (result) {
-          if (result) {
-            showTool("optimizely.png");
-          }
-        });
-        pingWindow("window.VWO", function (result) {
-          if (result) {
-            showTool("vwo.png");
-          }
-        });
-      }
-      // updates the AB test tool.
-      updateToolInfo();
+        if (tool === "optimizely") {
+          consolidatedExperiments = experimentHandler_optimizely(result);
+        }
+        if (tool === "vwo") {
+          consolidatedExperiments = experimentHandler_vwo(result);
+        }
+        if (tool === "adobetarget_v2") {
+          // console.log("RES", result);
+          consolidatedExperiments = experimentHandler_adobetarget_v2(result);
+        }
+        if (tool === "adobetarget_v1") {
+          // console.log("RES", result);
+          // consolidatedExperiments = experimentHandler_adobetarget_v2(result);
+          consolidatedExperiments = experimentHandler_adobetarget_v1(result);
+        }
 
-      function updateExperiments() {
-        function populateTests(tool, result) {
-          // console.log({ tool, result });
-          var consolidatedExperiments;
-          if (tool === "abtasty") {
-            consolidatedExperiments = experimentHandler_abtasty(result);
-          }
-          if (tool === "optimizely") {
-            consolidatedExperiments = experimentHandler_optimizely(result);
-          }
-          if (tool === "vwo") {
-            consolidatedExperiments = experimentHandler_vwo(result);
-          }
+        clearExperiments();
 
-          clearExperiments();
-
+        if (consolidatedExperiments) {
           inactiveExperimentsCount.innerText =
             consolidatedExperiments.inactive.length;
           activeExperimentsCount.innerText =
@@ -115,7 +94,56 @@ chrome.devtools.panels.create(
             inactiveExperiments.innerHTML += generateExperimentListItem(item);
           });
         }
+      }
 
+      // function syncTestsToWindow_at2(result) {
+      //   const sessionItems = JSON.parse(sessionStorage.getItem("at2_tests"));
+      //   result?.offers?.map((item) => {
+      //     let varName = `${item.responseTokens["activity.name"]} - ${item.responseTokens["experience.name"]}`;
+      //     if (!sessionItems.contains(varName)) {
+      //       sessionItems.push(varName);
+      //     }
+      //   });
+      //   sessionStorage.setItem("at2_tests", JSON.stringify(sessionItems));
+      // }
+
+      function updateToolInfo() {
+        function showTool(filename) {
+          body.querySelector(".tool").classList.remove("searching");
+          body.querySelector(".tool").classList.add("found");
+          body
+            .querySelector(".tool img.found")
+            .setAttribute("src", `./assets/${filename}`);
+        }
+        pingWindow("window.ABTasty", function (result) {
+          if (result) {
+            sessionStorage.setItem("reo-tool", "abtasty");
+            showTool("abtasty.png");
+          }
+        });
+        pingWindow("window.adobe.target.VERSION", function (result) {
+          if (result) {
+            sessionStorage.setItem("reo-tool", "adobetarget");
+            showTool("adobetarget.png");
+          }
+        });
+        pingWindow("window.optimizely", function (result) {
+          if (result) {
+            sessionStorage.setItem("reo-tool", "optimizely");
+            showTool("optimizely.png");
+          }
+        });
+        pingWindow("window.VWO", function (result) {
+          if (result) {
+            sessionStorage.setItem("reo-tool", "vwo");
+            showTool("vwo.png");
+          }
+        });
+      }
+      // updates the AB test tool.
+      updateToolInfo();
+
+      function updateExperiments() {
         pingWindow("window.ABTasty.results", function (result) {
           if (result) {
             populateTests("abtasty", result);
@@ -140,6 +168,32 @@ chrome.devtools.panels.create(
       }
       updateExperiments();
 
+      async function readCSS() {
+        var cssText = ``;
+        await fetch(chrome.runtime.getURL("style.css"))
+          .then((response) => response.text())
+          .then((css) => {
+            cssText = css;
+          })
+          .catch((error) => console.error("Error fetching style.css:", error));
+        return cssText;
+      }
+      async function printPanelContent() {
+        let panelContent = await body.innerHTML;
+        let cssText = await readCSS();
+
+        let printWindow = window.open("", "_blank");
+        printWindow.document.open();
+        printWindow.document.write(`<html>
+            <head><title>REO Event Tracker</title><style>${cssText}</style></head>
+            <body>${panelContent}</body></html>`);
+        printWindow.document.close();
+
+        setTimeout(function () {
+          printWindow.print();
+        }, 200);
+      }
+
       // click event listener.
       body.addEventListener("click", function (e) {
         if (e.target.closest("button#clear-events")) {
@@ -159,8 +213,20 @@ chrome.devtools.panels.create(
         }
         if (e.target.closest("button#refresh")) {
           // click on refresh button.
+          var sessionTool = sessionStorage.getItem("reo-tool");
           clearExperiments();
-          updateExperiments();
+          if (sessionTool !== "adobetarget") {
+            updateExperiments();
+          }
+          if (sessionTool === "adobetarget") {
+            chrome.devtools.inspectedWindow.reload({ ignoreCache: true });
+          }
+        }
+        if (e.target.closest("button#print")) {
+          body.querySelectorAll(".exp-list").forEach(function (exp) {
+            exp.classList.add("open");
+          });
+          printPanelContent();
         }
       });
 
@@ -172,9 +238,14 @@ chrome.devtools.panels.create(
         }
         if (request.request.url.includes("/v1/delivery")) {
           var payload = JSON.parse(request.request.postData.text);
-          handler_adobeTarget_v1(payload, updateList);
+          if (!payload.execute) {
+            handler_adobeTarget_v1(payload, updateList);
+          }
         }
-        if (request.request.url.includes("/mbox/json")) {
+        if (
+          request.request.url.includes("/mbox/json") &&
+          !request.request.url.includes("/mbox/json?mbox=target-global-mbox")
+        ) {
           var payload = request.request.queryString;
           handler_adobeTarget_v2(payload, updateList);
         }
@@ -188,6 +259,21 @@ chrome.devtools.panels.create(
         ) {
           var payload = JSON.parse(request.request.postData.text);
           handler_vwo(payload, updateList);
+        }
+        if (
+          request.request.url.includes("/mbox/json?mbox=target-global-mbox")
+        ) {
+          request.getContent(function (content, encoding) {
+            populateTests("adobetarget_v2", JSON.parse(content));
+          });
+        }
+        if (request.request.url.includes("/v1/delivery")) {
+          request.getContent(function (content, encoding) {
+            var parsedContent = content && JSON.parse(content);
+            if (parsedContent?.execute) {
+              populateTests("adobetarget_v1", JSON.parse(content));
+            }
+          });
         }
       });
     });

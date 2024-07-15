@@ -1,0 +1,812 @@
+{
+  "userActiveConsent": {
+    "accepted": true
+  },
+  "recommendationContext": {
+    "type": "PRODUCT",
+    "data": ["396422_01"]
+  },
+  "CoreUtils": {},
+  "scsec": 9880504,
+  "geoCode": "IN",
+  "geoCont": "AS",
+  "geoRegionCode": "IN_TN",
+  "geoCity": "IN_TN_Nagercoil",
+  "weather": [],
+  "deviceInfo": {
+    "brand": "Apple",
+    "type": "smartphone",
+    "os": "ios"
+  },
+  "trafficSource": "Direct",
+  "color": "",
+  "slim": "",
+  "dyid": "4156823406964539950",
+  "server": "dynamicyield.com",
+  "respTime": 1718120001,
+  "userLang": "en-us",
+  "vu": false,
+  "aud": "",
+  "shrAud": "",
+  "audCHC": {
+    "15102427": 2,
+    "16510373": 1,
+    "16510374": 1,
+    "16510376": 4,
+    "16510381": 1
+  },
+  "audTCHC": {},
+  "audTAuds": [],
+  "audYCHC": {},
+  "audYAuds": [],
+  "audSCHC": {},
+  "audLDART": "2024-06-11 00:00:00",
+  "inHeadContext": true,
+  "geoCoords": [8.1832, 77.4277],
+  "geoFields": {
+    "city": "Nagercoil",
+    "state": "",
+    "country": "India"
+  },
+  "session": "0211dba1022f28e7b170a3dc08268f33",
+  "jsession": "qg1imsts03rj6nrph6tere3llhddxvtd",
+  "isNewUser": false,
+  "consentBlacklisted": false,
+  "ignore": false,
+  "layout": "def",
+  "adnxs": false,
+  "nu": false,
+  "prd": [],
+  "currentWeather": null,
+  "adminServer": "adm.dynamicyield.eu",
+  "loggedInSites": ["adm"],
+  "feedProperties": {
+    "sku": "396422_01",
+    "in_stock": "True",
+    "price": "13200",
+    "categories": ["womens", "shoes", "slides&sandals", "sandals", "sandal"],
+    "keywords": [
+      "new in:false ",
+      "textile ",
+      "synthetic ",
+      "plain ",
+      "fit:regular ",
+      "green ",
+      "adults ",
+      "sandal ",
+      "vegan:yes ",
+      "sportstyle prime"
+    ],
+    "gender": "unisex"
+  },
+  "itemsData": [
+    {
+      "sku": "396422_01",
+      "in_stock": "True",
+      "price": "13200",
+      "categories": ["womens", "shoes", "slides&sandals", "sandals", "sandal"],
+      "keywords": [
+        "new in:false ",
+        "textile ",
+        "synthetic ",
+        "plain ",
+        "fit:regular ",
+        "green ",
+        "adults ",
+        "sandal ",
+        "vegan:yes ",
+        "sportstyle prime"
+      ],
+      "gender": "unisex"
+    }
+  ],
+  "pd2": {
+    "v0x13": {
+      "wt0x4": "0x2202x",
+      "m0x32": "0x2202x",
+      "d0x22": "0x22902x",
+      "dt0x4": "0x221172x",
+      "w0x6": "0x222432x"
+    },
+    "p0x11": {
+      "wt0x4": "0x2202x",
+      "m0x32": "0x2202x",
+      "d0x22": "0x2212x",
+      "dt0x4": "0x2212x",
+      "w0x6": "0x2232x"
+    }
+  },
+  "rvCount": 25,
+  "rpCount": 0,
+  "csCount": 1,
+  "wlCount": 0,
+  "audienceRules": [
+    {
+      "audience": 1753315,
+      "updatedAt": "2023-10-02 07:48:28",
+      "session": 0,
+      "sticky": 0,
+      "hidden": 0,
+      "conditionDays": 30,
+      "validDays": 1,
+      "audienceType": "user_attributes",
+      "name": "Purchased in the Past Month",
+      "rule": [
+        {
+          "condType": "ProductFeaturesPurchases",
+          "subType": null,
+          "conds": [
+            {
+              "id": 15102426,
+              "parameter": null,
+              "selectMethod": "equals",
+              "selectParameter": "{\"conditions\":[],\"relation\":\"AND\",\"negation\":false}",
+              "selectParameter2": "made",
+              "hitCountMethod": ">=",
+              "hitCount": 1,
+              "includeUrlParams": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "audience": 1753316,
+      "updatedAt": "2023-10-02 07:48:28",
+      "session": 0,
+      "sticky": 0,
+      "hidden": 0,
+      "conditionDays": 30,
+      "validDays": 1,
+      "audienceType": "user_attributes",
+      "name": "Referral Traffic",
+      "rule": [
+        {
+          "condType": "TrafficSource",
+          "subType": null,
+          "conds": [
+            {
+              "id": 15102427,
+              "parameter": null,
+              "selectMethod": "equals",
+              "selectParameter": "Referral",
+              "selectParameter2": null,
+              "hitCountMethod": ">=",
+              "hitCount": 1,
+              "includeUrlParams": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "audience": 1753317,
+      "updatedAt": "2023-10-02 07:48:28",
+      "session": 1,
+      "sticky": 0,
+      "hidden": 0,
+      "conditionDays": 0,
+      "validDays": 0,
+      "audienceType": "user_attributes",
+      "name": "Tablet Users",
+      "rule": [
+        {
+          "condType": "DeviceType",
+          "subType": null,
+          "conds": [
+            {
+              "id": 15102428,
+              "parameter": 2,
+              "selectMethod": "equals",
+              "selectParameter": null,
+              "selectParameter2": null,
+              "hitCountMethod": ">=",
+              "hitCount": 1,
+              "includeUrlParams": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "audience": 1753318,
+      "updatedAt": "2023-10-02 07:48:28",
+      "session": 1,
+      "sticky": 0,
+      "hidden": 0,
+      "conditionDays": 0,
+      "validDays": 0,
+      "audienceType": "user_attributes",
+      "name": "Desktop Users",
+      "rule": [
+        {
+          "condType": "DeviceType",
+          "subType": null,
+          "conds": [
+            {
+              "id": 15102429,
+              "parameter": 44,
+              "selectMethod": "equals",
+              "selectParameter": null,
+              "selectParameter2": null,
+              "hitCountMethod": ">=",
+              "hitCount": 1,
+              "includeUrlParams": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "audience": 1753319,
+      "updatedAt": "2023-10-02 07:48:28",
+      "session": 1,
+      "sticky": 0,
+      "hidden": 0,
+      "conditionDays": 0,
+      "validDays": 0,
+      "audienceType": "user_attributes",
+      "name": "Mobile Users",
+      "rule": [
+        {
+          "condType": "DeviceType",
+          "subType": null,
+          "conds": [
+            {
+              "id": 15102430,
+              "parameter": 0,
+              "selectMethod": "equals",
+              "selectParameter": null,
+              "selectParameter2": null,
+              "hitCountMethod": ">=",
+              "hitCount": 1,
+              "includeUrlParams": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "audience": 1753320,
+      "updatedAt": "2023-10-02 07:48:28",
+      "session": 1,
+      "sticky": 0,
+      "hidden": 0,
+      "conditionDays": 0,
+      "validDays": 0,
+      "audienceType": "user_attributes",
+      "name": "Paid Search Traffic",
+      "rule": [
+        {
+          "condType": "TrafficSource",
+          "subType": null,
+          "conds": [
+            {
+              "id": 15102431,
+              "parameter": null,
+              "selectMethod": "equals",
+              "selectParameter": "PaidSearch",
+              "selectParameter2": null,
+              "hitCountMethod": ">=",
+              "hitCount": 1,
+              "includeUrlParams": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "audience": 1753321,
+      "updatedAt": "2023-10-02 07:48:28",
+      "session": 1,
+      "sticky": 0,
+      "hidden": 0,
+      "conditionDays": 0,
+      "validDays": 0,
+      "audienceType": "user_attributes",
+      "name": "Search Traffic",
+      "rule": [
+        {
+          "condType": "TrafficSource",
+          "subType": null,
+          "conds": [
+            {
+              "id": 15102432,
+              "parameter": null,
+              "selectMethod": "equals",
+              "selectParameter": "Search",
+              "selectParameter2": null,
+              "hitCountMethod": ">=",
+              "hitCount": 1,
+              "includeUrlParams": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "audience": 1753322,
+      "updatedAt": "2023-10-02 07:48:28",
+      "session": 1,
+      "sticky": 0,
+      "hidden": 0,
+      "conditionDays": 0,
+      "validDays": 0,
+      "audienceType": "user_attributes",
+      "name": "Direct Traffic",
+      "rule": [
+        {
+          "condType": "TrafficSource",
+          "subType": null,
+          "conds": [
+            {
+              "id": 15102433,
+              "parameter": null,
+              "selectMethod": "equals",
+              "selectParameter": "Direct",
+              "selectParameter2": null,
+              "hitCountMethod": ">=",
+              "hitCount": 1,
+              "includeUrlParams": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "audience": 1753323,
+      "updatedAt": "2023-10-02 07:48:28",
+      "session": 1,
+      "sticky": 0,
+      "hidden": 0,
+      "conditionDays": 0,
+      "validDays": 0,
+      "audienceType": "user_attributes",
+      "name": "Social Traffic",
+      "rule": [
+        {
+          "condType": "TrafficSource",
+          "subType": null,
+          "conds": [
+            {
+              "id": 15102434,
+              "parameter": null,
+              "selectMethod": "equals",
+              "selectParameter": "Social",
+              "selectParameter2": null,
+              "hitCountMethod": ">=",
+              "hitCount": 1,
+              "includeUrlParams": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "audience": 1894284,
+      "updatedAt": "2024-05-13 06:16:10",
+      "session": 0,
+      "sticky": 0,
+      "hidden": 0,
+      "conditionDays": 90,
+      "validDays": 1,
+      "audienceType": "empathy_segment",
+      "empathyType": "Satisfied",
+      "name": "Satisfied",
+      "rule": [
+        {
+          "condType": "TrackedHits",
+          "subType": null,
+          "conds": [
+            {
+              "id": 16510369,
+              "parameter": null,
+              "selectMethod": "equals",
+              "selectParameter": "PURCHASE",
+              "selectParameter2": null,
+              "hitCountMethod": ">=",
+              "hitCount": 1,
+              "includeUrlParams": 0
+            },
+            {
+              "id": 16510370,
+              "parameter": null,
+              "selectMethod": "equals",
+              "selectParameter": "OFFLINE_PURCHASE",
+              "selectParameter2": null,
+              "hitCountMethod": ">=",
+              "hitCount": 1,
+              "includeUrlParams": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "audience": 1894285,
+      "updatedAt": "2024-05-13 06:16:10",
+      "session": 0,
+      "sticky": 0,
+      "hidden": 0,
+      "conditionDays": 30,
+      "validDays": 1,
+      "audienceType": "empathy_segment",
+      "empathyType": "Focused",
+      "name": "Focused",
+      "rule": [
+        {
+          "condType": "Audience",
+          "subType": null,
+          "conds": [
+            {
+              "id": 16510371,
+              "parameter": 1894284,
+              "selectMethod": "equals",
+              "selectParameter": null,
+              "selectParameter2": null,
+              "hitCountMethod": "<",
+              "hitCount": 1,
+              "includeUrlParams": 0
+            }
+          ]
+        },
+        {
+          "condType": "TrackedHits",
+          "subType": null,
+          "conds": [
+            {
+              "id": 16510372,
+              "parameter": null,
+              "selectMethod": "equals",
+              "selectParameter": "ADD_TO_WISHLIST",
+              "selectParameter2": null,
+              "hitCountMethod": ">=",
+              "hitCount": 1,
+              "includeUrlParams": 0
+            },
+            {
+              "id": 16510373,
+              "parameter": null,
+              "selectMethod": "equals",
+              "selectParameter": "ADD_TO_CART",
+              "selectParameter2": null,
+              "hitCountMethod": ">=",
+              "hitCount": 1,
+              "includeUrlParams": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "audience": 1894286,
+      "updatedAt": "2024-05-13 06:16:10",
+      "session": 0,
+      "sticky": 0,
+      "hidden": 0,
+      "conditionDays": 365,
+      "validDays": 1,
+      "audienceType": "empathy_segment",
+      "empathyType": "Interested",
+      "name": "Interested",
+      "rule": [
+        {
+          "condType": "Audience",
+          "subType": null,
+          "conds": [
+            {
+              "id": 16510374,
+              "parameter": 1894285,
+              "selectMethod": "equals",
+              "selectParameter": null,
+              "selectParameter2": null,
+              "hitCountMethod": "<",
+              "hitCount": 1,
+              "includeUrlParams": 0
+            }
+          ]
+        },
+        {
+          "condType": "Audience",
+          "subType": null,
+          "conds": [
+            {
+              "id": 16510375,
+              "parameter": 1894284,
+              "selectMethod": "equals",
+              "selectParameter": null,
+              "selectParameter2": null,
+              "hitCountMethod": "<",
+              "hitCount": 1,
+              "includeUrlParams": 0
+            }
+          ]
+        },
+        {
+          "condType": "TrackedHits",
+          "subType": null,
+          "conds": [
+            {
+              "id": 16510376,
+              "parameter": null,
+              "selectMethod": "equals",
+              "selectParameter": "PRODUCT_VIEWED",
+              "selectParameter2": null,
+              "hitCountMethod": ">=",
+              "hitCount": 1,
+              "includeUrlParams": 0
+            },
+            {
+              "id": 16510377,
+              "parameter": null,
+              "selectMethod": "equals",
+              "selectParameter": "SORT_ITEMS",
+              "selectParameter2": null,
+              "hitCountMethod": ">=",
+              "hitCount": 1,
+              "includeUrlParams": 0
+            },
+            {
+              "id": 16510378,
+              "parameter": null,
+              "selectMethod": "equals",
+              "selectParameter": "FILTER_ITEMS",
+              "selectParameter2": null,
+              "hitCountMethod": ">=",
+              "hitCount": 1,
+              "includeUrlParams": 0
+            },
+            {
+              "id": 16510379,
+              "parameter": null,
+              "selectMethod": "equals",
+              "selectParameter": "KEYWORD_SEARCH",
+              "selectParameter2": null,
+              "hitCountMethod": ">=",
+              "hitCount": 1,
+              "includeUrlParams": 0
+            },
+            {
+              "id": 16510380,
+              "parameter": null,
+              "selectMethod": "equals",
+              "selectParameter": "INFORM_AFFINITY",
+              "selectParameter2": null,
+              "hitCountMethod": ">=",
+              "hitCount": 1,
+              "includeUrlParams": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "audience": 1894287,
+      "updatedAt": "2024-05-13 06:16:10",
+      "session": 0,
+      "sticky": 0,
+      "hidden": 0,
+      "conditionDays": 30,
+      "validDays": 1,
+      "audienceType": "empathy_segment",
+      "empathyType": "Curious",
+      "name": "Curious",
+      "rule": [
+        {
+          "condType": "Audience",
+          "subType": null,
+          "conds": [
+            {
+              "id": 16510381,
+              "parameter": 1894285,
+              "selectMethod": "equals",
+              "selectParameter": null,
+              "selectParameter2": null,
+              "hitCountMethod": "<",
+              "hitCount": 1,
+              "includeUrlParams": 0
+            }
+          ]
+        },
+        {
+          "condType": "Audience",
+          "subType": null,
+          "conds": [
+            {
+              "id": 16510382,
+              "parameter": 1894284,
+              "selectMethod": "equals",
+              "selectParameter": null,
+              "selectParameter2": null,
+              "hitCountMethod": "<",
+              "hitCount": 1,
+              "includeUrlParams": 0
+            }
+          ]
+        },
+        {
+          "condType": "Audience",
+          "subType": null,
+          "conds": [
+            {
+              "id": 16510383,
+              "parameter": 1894286,
+              "selectMethod": "equals",
+              "selectParameter": null,
+              "selectParameter2": null,
+              "hitCountMethod": "<",
+              "hitCount": 1,
+              "includeUrlParams": 0
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "satisfiedAudienceConditions": {},
+  "subdomainURLs": "",
+  "section": "9880504",
+  "adSelectors": [],
+  "adUrlSelectors": [],
+  "svars": [],
+  "goalScripts": [],
+  "tzo": 9,
+  "cookieManagedExperiments": [],
+  "segdef": "",
+  "Util": {
+    "prod": true,
+    "debug": false,
+    "sop": "dy_smart",
+    "ver": "-1"
+  },
+  "Enums": {
+    "ENUMS": {
+      "REPORT_API": {
+        "TYPES": {
+          "IMPRESSION": "imp",
+          "STRATEGY_IMPRESSION": "strategy_imp",
+          "REAL_IMPRESSION": "ri",
+          "CLICK": "c",
+          "TIME_METRICS": {
+            "RCOM_REQ": "rcom"
+          },
+          "METRICS": {
+            "TEALIUM_METADATA_ERROR": "tme",
+            "USING_GET_TAG_VAR_PROP": "ugtvp",
+            "NO_DEVICE_INFO": "nodeviceinfo"
+          }
+        }
+      },
+      "EXECUTION_EVENTS": {
+        "SINGLE_DYNAMIC_CONTENT": "Single Item Dynamic Content",
+        "MULTIPLE_DYNAMIC_CONTENT": "Multiple Item Dynamic Content",
+        "SLIDER_DYNAMIC_CONTENT": "Slider Item Dynamic Content",
+        "OVERLAY_ACTION": "Overlay Action",
+        "NOTIFICATION_ACTION": "Notification Action",
+        "JAVASCRIPT_ACTION": "Custom JavaScript Action",
+        "EXPERIMENT_DECISION": "Experiment Decision"
+      },
+      "VERSIONDATASTR": {
+        "MECHANISM": 6,
+        "SUBMECHANISM": 7,
+        "STATIC_DIST": 8,
+        "CGTG": 9
+      },
+      "PII_EVENT": {
+        "OPT_IN": "message-optin-v1",
+        "OPT_OUT": "message-optout-v1"
+      },
+      "OTAGS_INFO": {
+        "TYPE": {
+          "ANOTHER_SMART": "another_smart",
+          "MULTIPLE_SMARTS": "multiple_other_smarts",
+          "SELECTOR": "selector",
+          "SMART": "smart"
+        },
+        "REASON": {
+          "SELECTOR_NOT_FOUND": "no_selector",
+          "SELECTOR_POPULATED": "selector_populated",
+          "ANOTHER_OVERLAY": "another_overly_selected",
+          "WAIT_FOR_SELECTOR": "waiting_for_selector",
+          "CAMPAIGN_DEPS": "campaign_deps",
+          "FREQUENCY": "frequency",
+          "TIME": "time",
+          "PAGE_EVENT": "_PageEvent",
+          "PREVIEW": "_Preview",
+          "NO_EXPERIMENT": "no_experiment",
+          "OPT_OUT": "opt_out"
+        },
+        "EMBED": {
+          "REPLACE": "replace"
+        }
+      },
+      "EXPERIMENT_MODE": {
+        "AFFINITY": "affinity"
+      }
+    }
+  },
+  "ExpUtils": {
+    "expSep": "##",
+    "dataSep": "|",
+    "verSep": ":",
+    "variSep": ",",
+    "notInExp": "-1",
+    "storageKey": "_dyexps",
+    "storageAttKey": "_dy_att_exps",
+    "cookieKey": "_dy_c_exps",
+    "cookieAttKey": "_dy_c_att_exps",
+    "SELECTION_AND_ATTRIBUTION": "0",
+    "SELECTION": "1",
+    "ATTRIBUTION": "2",
+    "SUB_MECHANISM_NA": "0",
+    "SUB_MECHANISM_CG_WITH_PREDICT": "1",
+    "SUB_MECHANISM_CG_WITHOUT_PREDICT": "2",
+    "SUB_MECHANISM_REWEIGHT_EXPLORE": "3",
+    "SUB_MECHANISM_REWEIGHT_KICK_IN": "4",
+    "IMPLICIT_ATTRIBUTION": "0",
+    "ATTRIBUTION_AFTER_RI": "1",
+    "ATTRIBUTION_AFTER_C": "2",
+    "EXPLICIT_ATTRIBUTION": "3",
+    "DECISION_EVENT": "get",
+    "IMPRESSION_EVENT": "ri",
+    "CONVERSION_EVENT": "c"
+  },
+  "pubSub": {},
+  "UserUtils": {},
+  "HostManager": {},
+  "AdDetection": {},
+  "Ajax": {},
+  "Audiences": {},
+  "BatchManager": {},
+  "Colors": {
+    "colorMap": {
+      "0": "d",
+      "1": "ip",
+      "2": "tb",
+      "3": "an",
+      "4": "w",
+      "5": "m",
+      "12": "c",
+      "13": "i6",
+      "14": "i7",
+      "15": "i8",
+      "16": "i9",
+      "17": "i10",
+      "18": "f",
+      "26": "ws",
+      "27": "ms",
+      "28": "ss",
+      "33": "o",
+      "34": "s",
+      "35": "l",
+      "36": "ob",
+      "39": "i11",
+      "42": "dt",
+      "44": "dk",
+      "52": "e"
+    }
+  },
+  "DataCollection": {},
+  "Detectors": {
+    "loc": "https://jp.puma.com/jp/ja/pd/%E3%83%A6%E3%83%8B%E3%82%BB%E3%83%83%E3%82%AF%E3%82%B9-%E3%83%99%E3%83%AD-%E3%82%AB%E3%83%A2-%E3%82%B5%E3%83%B3%E3%83%80%E3%83%AB/396422?swatch=01"
+  },
+  "ErrorReporting": {},
+  "Experiments": {},
+  "PiiUtil": {},
+  "PubSub": {},
+  "QManager": {},
+  "ServerUtil": {
+    "INVALID_USER_ID": 0
+  },
+  "SmartLinks": {},
+  "WindowActions": {},
+  "BeaconSender": {
+    "maxSize": 60000
+  },
+  "PersistentSender": {
+    "maxSize": 60000
+  },
+  "StoragePersistentSender": {
+    "maxSize": 1048576
+  }
+}
