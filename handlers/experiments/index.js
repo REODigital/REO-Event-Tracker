@@ -141,3 +141,17 @@ export function experimentHandler_dynamicyield(result) {
     inactive: inactive,
   };
 }
+
+export function experimentHandler_monetate(result) {
+  let active = [];
+  let inactive = [];
+
+  result.forEach(function (experiment) {
+    active.push(generateVariationName(experiment.key, experiment.split));
+  });
+
+  return {
+    active: active,
+    inactive: inactive,
+  };
+}

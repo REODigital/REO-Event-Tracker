@@ -18,6 +18,7 @@ import {
   experimentHandler_optimizely,
   experimentHandler_vwo,
   experimentHandler_dynamicyield,
+  experimentHandler_monetate,
 } from "./handlers/experiments/index.js";
 
 chrome.devtools.panels.create(
@@ -80,6 +81,9 @@ chrome.devtools.panels.create(
         if (tool === "dynamicyield") {
           consolidatedExperiments = experimentHandler_dynamicyield(result);
         }
+        if (tool === "monetate") {
+          consolidatedExperiments = experimentHandler_monetate(result);
+        }
 
         clearExperiments();
 
@@ -134,6 +138,12 @@ chrome.devtools.panels.create(
           if (result) {
             sessionStorage.setItem("reo-tool", "dynamicyield");
             showTool("dynamicyield.png");
+          }
+        });
+        pingWindow("window.monetateT", function (result) {
+          if (result) {
+            sessionStorage.setItem("reo-tool", "monetate");
+            showTool("monetate.png");
           }
         });
       }
@@ -209,7 +219,7 @@ chrome.devtools.panels.create(
           var expList = e.target.closest("div.exp-list");
           if (expList.classList.contains("open")) {
             expList.classList.remove("open");
-          } else {
+          } else if (!expList.classList.contains("open")) {
             expList.classList.add("open");
           }
         }
@@ -220,7 +230,7 @@ chrome.devtools.panels.create(
           if (sessionTool !== "adobetarget") {
             updateExperiments();
           }
-          if (sessionTool === "adobetarget") {
+          if (sessionTool === "adobetarget" || sessionTool === "monetate") {
             chrome.devtools.inspectedWindow.reload({ ignoreCache: true });
           }
         }
@@ -282,6 +292,25 @@ chrome.devtools.panels.create(
             var parsedContent = content && JSON.parse(content);
             if (parsedContent?.execute) {
               populateTests("adobetarget_v1", JSON.parse(content));
+            }
+          });
+        }
+        if (
+          request.request.url.includes("f.monetate.net") &&
+          request.request.method === "GET"
+        ) {
+          request.getContent(function (content, encoding) {
+            if (
+              content?.includes(`{"args":[[{"split":`) &&
+              content?.includes(`],"op":"sr2"}`)
+            ) {
+              const resi = content.split(`{"args":[[{"split":`)[1];
+              const res = `[{"split":` + resi.split(`],"op":"sr2"}`)[0];
+
+              var parsedContent = res && JSON.parse(res);
+              if (parsedContent) {
+                populateTests("monetate", parsedContent);
+              }
             }
           });
         }
